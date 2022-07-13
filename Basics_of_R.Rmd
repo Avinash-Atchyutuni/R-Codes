@@ -1,0 +1,73 @@
+---
+title: "Basics_of_R"
+output: html_document
+date: "2022-07-13"
+---
+
+The assignment operator in R is <- symbol. 
+```{r}
+x<-5
+print(x)
+```
+
+## Creating sequences in R
+to create sequence in R. we use the : symbol
+
+
+```{r}
+y<-1:20
+print(y)
+```
+
+
+## Different types of classes in R. 
+
+Everything that we encounter in R is called as an object. now each object has a class. 
+the 5 basics classes in R is
+1) Character
+2) Numeric
+3) Integer
+4) Complex 
+5) Logical 
+
+The most basic object in R is a vector. 
+
+a vector is a collection of objects from the same class. 
+To store objects from different classes we use lists. 
+```{r}
+c1<-'a'
+n1<-10.6
+n2<- 10L
+co1<- 5 + 4i
+L1<- TRUE
+temp<- as.numeric(L1)
+L2<- list(1,'a',T,5+4i)
+print(c1)
+print(n1)
+print(n2)
+print(co1)
+print(L1)
+print(L2)
+print(temp)
+```
+
+
+## Numbers 
+
+Numbers in R is treated as numeric objects. (double precision type)
+if you specifically want integers. then L should be a suffix at the number.
+INF - represents infinity. it is a special type of numeric object. 
+similarly Nan is also special type of numeric object. Nan represents undefined. ex 0/0. 
+To convert a datatype of an object. we use 
+1) as.numeric()
+2) as.logical()
+3) as.character()
+
+
+list are used to store objects of different class. 
+we create a list using the list keyword.
+
+
+
+
+
