@@ -145,7 +145,59 @@ print(X)
 ```
 
 
+## Missing values in R
 
+They are denoted by either na or nan 
+There 2 functions to check for na and nan values 
+- [ ] Is.na
+- [ ] Is.nan 
+Na values have a class also, so there are integer na and character na etc. 
+nan value is also na but converse is not true. 
+is.na value is return True if nan values are present but is.nan will not return true if na is present. 
+```{r}
+x<-c(1,2,NA,10,3)
+is.na(x)
+x<-c(1,2,NA,NaN,10,3)
+is.nan(x)
+is.na(x)
+```
 
+## Data frames
 
+Data frames are used to store tabular data. 
+- [ ] They are special type of list where every elements must be of the same type 
+- [ ] Each element of the list can be thought as a column and length of element can be thought as the number of rows
+- [ ] It can store objects of different classes 
+- [ ] They have special attribute called row.names 
+- [ ] They are created by calling read.table or read.csv()
+- [ ] Can be converted to a matrix by calling data.matrix()
+- [ ] They can also be created using the data.frame function 
+ 
+X<- data.frame(foo = 1:4, bar = c(T,T,F,F))
+nrow returns the total number of rows 
+ncol returns the total number of columns 
+
+R objects can have names, now this is not just true for data frames but all R objects. 
+X<-1:3
+Names(x) will return null 
+We can now assign names to the object x. 
+Names(x) <- c(‘foo’, ‘bar’, ‘norf’)
+X
+Names(x) 
+matrices can have names but to assign the names we must pass the list which contains a list of row names and list of column names
+we use the dimnames function 
+dimnames(m) <- list(c('a','b'),c('c','d'))
+the above line works with 2*2 matrix.
+```{r}
+# using the data.frame we can create a dataframe. here foo and bar are the column names. 
+X<- data.frame(foo = 1:4, bar = c(T,T,F,F))
+X
+nrow(X)
+ncol(X)
+X<-1:3
+names(X)
+names(X)<- c('foo','bar','norf')
+X
+names(X)
+```
 
