@@ -69,5 +69,80 @@ we create a list using the list keyword.
 
 
 
+Matrices 
+
+They are special vector in R with the dimension attribute. The dimension attribute is an integer vector of size 2. (Ncol,Nrow)
+We create a matrix using the keyword matrix. 
+It has 2 attributes 
+- [ ] Dims - returns the number of dimensions 
+- [ ] Attributes 
+Matrix is created column wise. 
+So first all the columns are filled, that is all the rows in that column are filled first. 
+
+Matrices are also created using a vector. 
+Ex x<-1:10
+So x is sequence of 1 to 10 
+Then dim(x)<- c(2,5)
+So we have assigned the dimensions of x as 5 columns and 2 rows. 
+
+Another way of creating a matrix is by row binding and column binding. 
+
+So in Cbind the columns are filled first. So x fills the first column and y fills the second column. 
+So in Rbind the rows are filled first. 
+
+
+```{r}
+#creating a matrix 
+x<- matrix(ncol = 2, nrow = 2)
+# creating a matrix using vectors
+y<- 1:10
+# we create a matrix by creating a vector containing the dimensions and assigning the vector as the 
+# dimensions of sequence y.
+dim(y)=c(2,5)
+print(y)
+x<- 1:3
+y<- 10:12
+cbind(x,y)
+rbind(x,y)
+```
+
+Factors 
+
+
+Factors are special types of vectors that are used to represent categorical data. 
+There are 2 types of factors (nominal data, ordinal data)
+- [ ] Unordered 
+- [ ] Ordered 
+
+One can think of factor as an integer vector where each integer has a label. 
+A factor can be created using the keyword factor. 
+X<- factor(c(‘yes’,’no’,’yes’))
+Here are there are two types of distinct values (‘yes’, ‘no’)
+These are called as levels.
+
+Levels are the attribute for factor. 
+Unclass function will strip the factor from its class and represent it as the integer vector. 
+
+The order of the levels can be set using the levels argument to factor (). This can be important for linear modelling. 
+
+So in the example of yes and no. Alphabetically no should be level 1 and yes should be 2. 
+We can change it using the levels parameter. 
+
+X<- factor(c(‘yes’,’no’,’yes’), levels = c(‘yes’, ’no’))
+
+```{r}
+# Creating a factor in R, we use the factor keyword
+X<- factor(c("yes","yes","no"))
+print(X)
+# Unclass strips the class from the factor and then converts into a integer vector
+unclass(x)
+# In order to assign levels we pass the levels parameter to the factor and manually assign the functions
+X<- factor(c("yes","yes","no"), levels = c('yes','no'))
+print(X)
+```
+
+
+
+
 
 
