@@ -71,6 +71,7 @@ we create a list using the list keyword.
 
 ## Matrices 
 
+
 They are special vector in R with the dimension attribute. The dimension attribute is an integer vector of size 2. (Ncol,Nrow)
 We create a matrix using the keyword matrix. 
 It has 2 attributes 
@@ -106,7 +107,9 @@ cbind(x,y)
 rbind(x,y)
 ```
 
+
 ## Factors 
+
 
 
 Factors are special types of vectors that are used to represent categorical data. 
