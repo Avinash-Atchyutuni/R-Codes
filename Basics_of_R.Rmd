@@ -445,5 +445,44 @@ repeat {
 }
 ```
 
+# Functions in R
+
+```{r}
+# creating a function, the function name is add2. This is called function defintion
+add2<- function(x,y){
+  x+y
+}
+# This is called as the function call
+add2(3,5)
+
+above10<- function(x){
+  use<- x>10 # we are creating a logical vector indicating which elements of x are greater than 10. 
+  x[use]
+}
+above10(1:20)
+
+abovey<- function(x,y = 10){# x is vector and y is arbitrary number
+# specifying y = 10 in the function definition indicates that if no value of y is explicitly      #mentioned then y will take the value of 10 by default. This is know an default arguements 
+  use<- x>y
+  x[use]
+}
+abovey(1:100,40)
+
+
+column_mean<- function(x){
+  x
+  nc<-ncol(x)
+  nc
+  means<- numeric(nc)
+  means
+  # in a dataframe we subset using the logic [rows, columns], here since we are using column index, we should use x[,i] which indicates that we are taking all rows and a single column i. 
+  for(i in 1:nc){
+    means[i] = mean(x[,i],na.rm = T)
+  }
+  means 
+}
+column_mean(airquality)
+
+```
 
 
