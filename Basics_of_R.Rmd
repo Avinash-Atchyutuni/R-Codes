@@ -371,3 +371,79 @@ There 2 methods for matrix multiplications.
 - [ ] True matrix multiplication; x%%y is used. 
 
 
+## Control Structures
+
+for loop is simple loop that runs for a certain number of times. here the number of times is defined. 
+
+while loop is loop that runs until a certain condition is false. we need to be careful, as while loops may run infinite number of times if our condition is not defined. 
+
+repeat is special loop that initiates an infinite loop. the only way to exit the loop is to call break.
+
+the next statement is similar to continue statement in other programming language. so if next is encountered then R will skip an interation and move to the next iteration. 
+```{r}
+x<- 5
+if(x<5){
+  y<-10
+}else {
+  y<-0
+}
+print(y)
+#There is another way of writing the above code 
+y<-if(x<6){
+  10
+}else{
+  0
+}
+print(y)
+
+# Loops
+# Looping through a sequence
+for(i in 1:10){
+  print(i)
+}
+# loop through a character vector 
+for(c in c('a','b','c','d')){
+  print(c)
+}
+t<- 1:10
+# seq_along function will create another vector containing values from 1 till length of the function
+for(i in seq_along(t)){
+  print(i)
+}
+m<- matrix(1:20,4,5)
+# seq_len function converts an integer into a seqence. if i= 2 then the sequence created is 1:2
+for(i in seq_len(nrow(m))){
+  for(j in seq_len(ncol(m))){
+    print(m[i,j])
+  }
+}
+#While loop syntax 
+count<- 0 
+while(count<10){
+print(count)
+count<- count+1
+}
+count<-0
+t<-10
+# to run multiple conditions in a while loop we use && and ||. they are "and" and or repectively. 
+while(count<10 && t>0){
+print(count)
+count<- count+1
+t<- t-2
+}
+# repeat loop
+print(t)
+repeat {
+  if (t==10){
+    t<-t+1
+    next # it will skip the iteration when t = 10
+  }else if (t%%2==1){# the modulo is symbol in R is %%
+      print('Leaving the loop')
+    break
+  }
+  t<-t+2
+}
+```
+
+
+
