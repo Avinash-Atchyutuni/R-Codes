@@ -200,4 +200,174 @@ names(X)<- c('foo','bar','norf')
 X
 names(X)
 ```
+## Reading and writing data in R 
+
+- [ ] Read.table, read.csv for reading tabular data 
+- [ ] ReadLines for reading lines of a text file 
+- [ ] Source for reading in R code files (inverse of dump)
+- [ ] Dget, for reading R code files (inverse of Dput)
+- [ ] Load, for reading saved workspaces 
+- [ ] Unserialize, for single R objects in Binary form 
+
+The read.table function is one of the most commonly used functions for reading data. It has few important arguments. 
+- [ ] File name - name of the files 
+- [ ] Header - indicates if the file has a header line 
+- [ ] Sep  - a string indicating how the columns are separated 
+- [ ] ColClasses -  a character vector indicating the class of the column 
+- [ ] Nrow - number of rows in the dataset 
+- [ ] Comment.char - character string indicating the comment character 
+- [ ] Skip - number of lines to skip from beginning
+- [ ] StringAsFactors - should character variable be coded as factors
+
+
+## Textual format 
+
+Dumping and dputing are useful because the resulting textual format is editable and in case of corruption potentially recoverable. 
+
+Unlike writing out a table or csv file, dump and dput  preserve the metadata. 
+So that another user doesn’t have to specify it all over again. 
+
+Textual format works better with version control system. 
+
+If y is the data frame 
+Dput(y,file = “y.R”)
+Now retrieve the file, we use the dget function 
+New.y <- dget(‘y.R’)
+
+Dump is similar to Dput however it works with multiple objects. 
+X<- “foo”
+Y<- data.frame(a=1,b=“a”)
+Dump(c(“X”, “Y”, file = “data.R”)
+Rm(x,y)
+Now to retrieve the files in R, we use the source function. 
+Source(‘data.R’)
+
+Interfaces to the outside world
+
+These are functions that connect to the outside world. 
+Most of connections can be made to files 
+- [ ] File - opens a connection to a file 
+- [ ] Gzfile - opens a connection to a compressed file with gz2 
+- [ ] Bzfile - opens a connection to a file compressed with bz2
+- [ ] URL - opens a connection to a web page 
+
+File function has a few arguments. 
+1. description is the name of the file 
+2. Open is a code indicating
+3.  R read only 
+4. W writing.(it opens a new file)
+5. A - appending 
+6. Rb,wb,ab are reading, writing, appending in binary mode (windows)
+
+
+To close the connections we use the close function.
+ReadLines are useful for reading lines from a web page
+
+Con <- url(link)
+
+X<- readLines(con)
+
+
+
+## Sub setting 
+
+There are couple options that are used for sub setting in R 
+- [ ] [ always returns an object of the same class as the original; can be used select more than one element. If you subset a list you will get back a list. 
+- [ ] [[ is used to extract elements of a list or a data frame; it can only be used to extract a single element and class of the returned object will not necessarily be a list or a data frame. 
+- [ ] $ is used to extract elements of a list or data frame by name; semantics are similar to [[
+
+Ex x = c(“a”,”b”,”c”,”d”,”a”)
+X[1] will return a 
+X[1:4] will return the first 4 elements 
+X[x>a] will return all the elements that are greater than the letter “a”
+
+The above is an example of vector sub setting. 
+
+List sub setting 
+X<- list(foo = 1:4, bar =0.6)
+X[1] - single bracket will return the object of the same class so since we are sub setting a list, the output is also a list. 
+X[1] - $foo - name of the list 
+1 2 3 4 
+X[[1]] - double bracket will returns objects of different class 
+1 2 3 4
+So in the first case it returned a list 
+2nd case it returned a sequence 
+
+X$bar 
+0.6 
+We subsetted the list using the name of the object “bar”
+
+To extract multiple elements of the list we use the [. We cannot extract multiple elements using the [[ or $ symbol 
+X[c(1,3)] 
+$foo 
+1,2,3
+
+Another way of subsetting is 
+
+Name <- “foo”
+X[[name]] # it computed the index with the name foo 
+
+To subset list within a list 
+
+We can do it using 2 methods 
+
+X[c(1,3)]
+So this is will return the 1st of the list x and 3 rd element of the extracted list. 
+
+X[[1]][[3]]
+Using double brackets 
+
+
+Subsetting matrices 
+
+X<- matrix(1:6,2,4)
+So the first parameter is the row and second parameter is the column. 
+X[1,2]
+So X is 2*4 matrix 
+So we are trying to find the 1 row and the 2nd column. 
+X[1,]
+It will return the entire 1st row 
+X[,2]
+It will return the entire 2nd column. 
+
+So in this case [ will not return an object of the same class. To avoid this behaviour we use a parameter called drop and set it to FALSE.
+
+subsetting a dataframe
+
+dataframes are divided into [rows,columns]
+so if we want our output to be a dataframe 
+then we need to write our condition and then end it with a ","
+if comma is not mentioned then the output is a sequence. 
+
+
+
+## Partial matching 
+
+X<- list(‘Anything ’ = 1:5)
+So if typing Anything  is difficult everything time we can use partial matching. 
+X[[‘A’]] - will return NULL 
+But 
+X[[‘A’,exact = FALSE]]
+It will return the output of the object named anything that is 
+1 2 3 4 5 
+
+
+## Removing na values. 
+
+X<- c(1,2,4,Na,Na,5)
+Bad <- is.na(X)
+X[!bad]
+!bad is all the values that are not null. 
+
+So if 2 vectors have missing values in the same positions then we can use 
+Complete.cases function 
+
+Complete.cases(x,y) 
+Will return a logical vector that stores true if the value is not Na and false if it is. 
+Note == is used to equality 
+
+There 2 methods for matrix multiplications. 
+- [ ] Element wise. So we use x*y
+- [ ] True matrix multiplication; x%%y is used. 
+
 
